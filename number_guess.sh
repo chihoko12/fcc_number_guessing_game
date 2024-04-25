@@ -41,7 +41,6 @@ fi
 
 # Start a new game
 SECRET_NUMBER=$(( 1 + RANDOM % 1000))
-echo "SECRET_NUMBER: $SECRET_NUMBER"
 GAME_ID=$($PSQL "INSERT INTO games(user_id,secret_number) VALUES($USER_ID, $SECRET_NUMBER) RETURNING game_id")
 NUMBER_OF_GUESSES=0
 
