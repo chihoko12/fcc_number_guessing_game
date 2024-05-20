@@ -26,9 +26,9 @@ else
   USERNAME=$(echo $USER_INFO | cut -d "|" -f 2)
 
   # Get games played and best game
-  GAME_STATS=$($PSQL "SELECT COUNT(game_id), MIN(number_of_guesses) FROM games WHERE user_id = '$USER_ID' AND game_won = TRUE GROUP BY user_id")
-  GAMES_PLAYED=$($echo $GAME_STATS | cut -d "|" -f 1)
-  BEST_GAME=$($echo $GAME_STATS | cut -d "|" -f 2)
+  GAME_STATS=$($PSQL "SELECT COUNT(game_id), MIN(number_of_guesses) FROM games WHERE user_id = $USER_ID AND game_won = TRUE GROUP BY user_id")
+  GAMES_PLAYED=$(echo $GAME_STATS | cut -d "|" -f 1)
+  BEST_GAME=$(echo $GAME_STATS | cut -d "|" -f 2)
 
   if [[ -z $GAMES_PLAYED ]]
   then
