@@ -36,7 +36,7 @@ else
     BEST_GAME=0
   fi
 
-  echo "Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
+  echo -e "\nWelcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses.\n"
 fi
 
 # Start a new game
@@ -44,9 +44,10 @@ SECRET_NUMBER=$(( 1 + RANDOM % 1000))
 GAME_ID=$($PSQL "INSERT INTO games(user_id,secret_number) VALUES($USER_ID, $SECRET_NUMBER) RETURNING game_id")
 NUMBER_OF_GUESSES=0
 
+echo "Guess the secret number between 1 and 1000: "
+
 while true
 do
-  echo "Guess the secret number between 1 and 1000: "
   read USER_GUESS
 
   # Validate guess
